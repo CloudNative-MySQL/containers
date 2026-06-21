@@ -1,6 +1,6 @@
-# cloudnative-mysql / containers
+# cnmsql / containers
 
-Container images for [CloudNative-MySQL](https://github.com/CloudNative-MySQL),
+Container images for [cnmsql](https://github.com/cnmsql),
 a Kubernetes operator for running Percona Server for MySQL.
 
 This repository builds the **instance image**, which is the MySQL pod the
@@ -92,7 +92,7 @@ The build reads these environment variables:
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `REGISTRY` | `cloudnative-mysql-instance` | Image name prefix and target repository. |
+| `REGISTRY` | `cnmsql-instance` | Image name prefix and target repository. |
 | `PUSH` | _(unset)_ | Set to `1` to push after building. |
 | `PATCH_VERSION` | _(auto)_ | Manual patch override for all built versions. |
 | `GH_TOKEN` | _(unset)_ | GitHub token for GHCR tag lookup (CI). |
@@ -101,7 +101,7 @@ The build reads these environment variables:
 Build and push `8.0` to GHCR:
 
 ```bash
-REGISTRY=ghcr.io/cloudnative-mysql/cloudnative-mysql-instance \
+REGISTRY=ghcr.io/cnmsql/cnmsql-instance \
 GH_TOKEN="$(gh auth token)" \
 PUSH=1 \
 images/build.sh 8.0
@@ -111,7 +111,7 @@ images/build.sh 8.0
 
 [`.github/workflows/build.yml`](.github/workflows/build.yml) reads the version
 list from `versions.json`, builds each version in parallel, and pushes the images
-to `ghcr.io/<owner>/cloudnative-mysql-instance`. It runs on pushes to `main` and
+to `ghcr.io/<owner>/cnmsql-instance`. It runs on pushes to `main` and
 on `v*` tags, and you can also start it by hand with `workflow_dispatch`.
 
 ## License

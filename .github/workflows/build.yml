@@ -63,7 +63,7 @@ jobs:
 
     - name: Build and push instance image
       run: |
-        repo="${{ env.REGISTRY }}/${{ github.repository_owner }}/cloudnative-mysql-instance"
+        repo="${{ env.REGISTRY }}/${{ github.repository_owner }}/cnmsql-instance"
         # GHCR repositories must be lowercase.
         repo="$(echo "$repo" | tr '[:upper:]' '[:lower:]')"
         # On tag pushes, publish release tags (<version>-<patch> + moving <version>).

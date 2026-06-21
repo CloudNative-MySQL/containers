@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the cloudnative-mysql slim instance image(s) from images/versions.json.
+# Build the cnmsql slim instance image(s) from images/versions.json.
 #
 # Tagging: <MYSQL_VERSION>-<PATCH_VERSION> (e.g., 8.0-1, 8.0-2, 8.4-1)
 # The patch version is auto-incremented by querying the target registry for
@@ -12,7 +12,7 @@
 #   images/build.sh 8.0 --patch=5           # force patch version 5 for 8.0
 #
 # Environment:
-#   REGISTRY            image name prefix   (default: cloudnative-mysql-instance)
+#   REGISTRY            image name prefix   (default: cnmsql-instance)
 #   PUSH                set to 1 to push
 #   PATCH_VERSION       manual patch override (applies to all versions being built)
 #   COMMIT_TAG          if set, tag as <MYSQL_VERSION>-<COMMIT_TAG> (e.g. a commit
@@ -31,7 +31,7 @@ here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${here}/.." && pwd)"
 versions_json="${here}/versions.json"
 
-REGISTRY="${REGISTRY:-cloudnative-mysql-instance}"
+REGISTRY="${REGISTRY:-cnmsql-instance}"
 CONTAINER_TOOL="${CONTAINER_TOOL:-docker}"
 PATCH_VERSION="${PATCH_VERSION:-}"
 
@@ -42,7 +42,7 @@ PATCH_VERSION="${PATCH_VERSION:-}"
 
 next_patch_via_ghcr_api() {
   local repo="$1" mysql_version="$2"
-  # repo example: ghcr.io/CloudNative-MySQL/cloudnative-mysql-instance
+  # repo example: ghcr.io/cnmsql/cnmsql-instance
   local registry="${repo%%/*}"
   local rest="${repo#*/}"  # owner/package
   local owner="${rest%%/*}"
